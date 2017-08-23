@@ -8,7 +8,7 @@ describe 'Ruby queries_viewer' do
     expect(body[:data]).to eq(viewer: nil)
     expect(body[:errors]).to eq([
       message: "Must be authenticated to access viewer",
-      locations: [line: 3, column: 5],
+      locations: [line: 2, column: 5],
       path: ["viewer"]
     ])
   end

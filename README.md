@@ -1,5 +1,7 @@
 # GraphQL Examples
 
+[![Build Status](https://travis-ci.org/uniiverse/graphql-examples.svg?branch=master)](https://travis-ci.org/uniiverse/graphql-examples)
+
 In this repository you'll find some examples of using our [GraphQL API](https://developers.universe.com/page/graphql-explorer).
 
 ## Contents
