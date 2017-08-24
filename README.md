@@ -9,6 +9,7 @@ In this repository you'll find some examples of using our [GraphQL API](https://
 * [Authentication](#authentication)
 * [Queries](#queries)
   * [Viewer](#viewer)
+  * [List of Events](#list-of-events)
 * [Mutatations](#mutations)
   * [Save Event](#save-event)
 
@@ -20,9 +21,9 @@ To use our API, please see the [guide](https://developers.universe.com/docs/auth
 
 ### Viewer
 
-`Viewer` is the user who makes the current GraphQL request.
+`Viewer` is the user who makes the current GraphQL request:
 
-<details name="curl/queries_viewer.sh"><summary><strong>cURL example</strong></summary>
+<details name="curl/queries_viewer.sh"><summary>cURL example</summary>
 <p>
 
 ```sh
@@ -57,7 +58,7 @@ EOF
 
 </details>
 
-<details name="ruby/queries_viewer.rb"><summary><strong>Ruby example</strong></summary>
+<details name="ruby/queries_viewer.rb"><summary>Ruby example</summary>
 <p>
 
 ```rb
@@ -90,6 +91,106 @@ puts graphql(
 #       "id": "58d98e52bbdebd003804e065",
 #       "firstName": "Evgeny",
 #       "lastName": "Li"
+#     }
+#   }
+# }
+```
+
+</p>
+
+</details>
+
+### List of Events
+
+With the `Host.id`, it's possible to get the list of all `Events`:
+
+<details name="curl/queries_list_of_events.sh"><summary>cURL example</summary>
+<p>
+
+```sh
+curl https://www.universe.com/graphql/beta \
+  -H "Content-Type: application/json" \
+  -d @- << EOF
+{
+  "query": "query GraphqlExample {
+    host(id: \"4f5e06cb2078f9730c000014\") {
+      name
+      events {
+        totalCount
+        nodes {
+          id
+          title
+        }
+      }
+    }
+  }"
+}
+EOF
+# => {
+#   "data": {
+#     "host": {
+#       "name": "Joshua Kelly",
+#       "events": {
+#         "totalCount": 1,
+#         "nodes": [
+#           {
+#             "id": "5879ad8f6672e70036d58ba5",
+#             "title": "End of Unix Time"
+#           }
+#         ]
+#       }
+#     }
+#   }
+# }
+```
+
+</p>
+
+</details>
+
+<details name="ruby/queries_list_of_events.rb"><summary>Ruby example</summary>
+<p>
+
+```rb
+require 'net/http'
+require 'uri'
+require 'json'
+
+def graphql(query)
+  uri = URI.parse('https://www.universe.com/graphql/beta')
+  http = Net::HTTP.new(uri.host, uri.port).tap { |h| h.use_ssl = true }
+  request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
+  request.body = {query: query}.to_json
+  http.request(request).body
+end
+
+puts graphql(
+  "query GraphqlExample {
+    host(id: \"4f5e06cb2078f9730c000014\") {
+      name
+      events {
+        totalCount
+        nodes {
+          id
+          title
+        }
+      }
+    }
+  }"
+)
+# => {
+#   "data": {
+#     "host": {
+#       "name": "Joshua Kelly",
+#       "events": {
+#         "totalCount": 1,
+#         "nodes": [
+#           {
+#             "id": "5879ad8f6672e70036d58ba5",
+#             "title": "End of Unix Time"
+#           }
+#         ]
+#       }
 #     }
 #   }
 # }
