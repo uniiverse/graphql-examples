@@ -6,17 +6,23 @@ In this repository you'll find some examples of using our [GraphQL API](https://
 
 ## Contents
 
-* [Authentication](https://developers.universe.com/docs/authorizing-with-oauth)
+* [Authentication](#authentication)
 * [Queries](#queries)
   * [Viewer](#viewer)
 * [Mutatations](#mutations)
   * [Save Event](#save-event)
 
+## Authentication
+
+To use our API, please see the [guide](https://developers.universe.com/docs/authorizing-with-oauth) how to get an access token by using OAuth 2.0.
+
 ## Queries
 
 ### Viewer
 
-<details name="curl/queries_viewer"><summary><strong>cURL example</strong></summary>
+`Viewer` is the user who makes the current GraphQL request.
+
+<details name="curl/queries_viewer.sh"><summary><strong>cURL example</strong></summary>
 <p>
 
 ```sh
@@ -51,7 +57,7 @@ EOF
 
 </details>
 
-<details name="ruby/queries_viewer"><summary><strong>Ruby example</strong></summary>
+<details name="ruby/queries_viewer.rb"><summary><strong>Ruby example</strong></summary>
 <p>
 
 ```rb
@@ -97,4 +103,8 @@ puts graphql(
 
 ### Save Event
 
-TODO
+Coming soon
+
+## Contributing
+
+Please check out the [CONTRIBUTING.md](./CONTRIBUTING.md) guide.
