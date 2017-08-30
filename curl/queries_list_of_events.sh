@@ -1,9 +1,11 @@
+export HOST_ID=4f5e06cb2078f9730c000014
+
 curl https://www.universe.com/graphql/beta \
   -H "Content-Type: application/json" \
   -d @- << EOF
 {
   "query": "query GraphqlExample {
-    host(id: \"4f5e06cb2078f9730c000014\") {
+    host(id: \"$HOST_ID\") {
       name
       events {
         totalCount

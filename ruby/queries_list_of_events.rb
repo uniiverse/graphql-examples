@@ -10,9 +10,11 @@ def graphql(query)
   http.request(request).body
 end
 
+host_id = '4f5e06cb2078f9730c000014'
+
 puts graphql(
   "query GraphqlExample {
-    host(id: \"4f5e06cb2078f9730c000014\") {
+    host(id: \"#{host_id}\") {
       name
       events {
         totalCount

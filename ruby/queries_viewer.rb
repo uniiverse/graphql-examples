@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-def graphql(query, access_token:)
+def graphql(query, access_token)
   uri = URI.parse('https://www.universe.com/graphql/beta')
   http = Net::HTTP.new(uri.host, uri.port).tap { |h| h.use_ssl = true }
   headers = {'Authorization' => "Bearer #{access_token}", 'Content-Type' => 'application/json'}
@@ -10,6 +10,8 @@ def graphql(query, access_token:)
   request.body = {query: query}.to_json
   http.request(request).body
 end
+
+access_token = 'your_access_token'
 
 puts graphql(
   "query GraphqlExample {
@@ -19,7 +21,7 @@ puts graphql(
       lastName
     }
   }",
-  access_token: 'access_token'
+  access_token
 )
 # => {
 #   "data": {

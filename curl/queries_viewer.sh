@@ -1,4 +1,4 @@
-export ACCESS_TOKEN=access_token
+export ACCESS_TOKEN=your_access_token
 
 curl https://www.universe.com/graphql/beta \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
