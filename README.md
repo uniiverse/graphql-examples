@@ -16,7 +16,34 @@ In this repository you'll find some examples of using our [GraphQL API](https://
 
 ## Authentication
 
-To use our API, please see the [guide](https://developers.universe.com/docs/authorizing-with-oauth) how to get an access token by using OAuth 2.0.
+1. Create a [new application](https://www.universe.com/oauth/applications).
+2. Get an authorization code after signing in with the application.
+3. Get an access token with the authorization code.
+
+<details><summary>Details</summary>
+<p>
+
+```sh
+export APPLICATION_ID=...
+export APPLICATION_SECRET=...
+export REDIRECT_URI=...
+export AUTHORIZATION_CODE=...
+
+curl --url 'https://www.universe.com/oauth/token' \
+  --header 'content-type: application/json' \
+  --data "{\"grant_type\":\"authorization_code\", \"client_id\":\"$APPLICATION_ID\", \"client_secret\":\"$APPLICATION_SECRET\", \"redirect_uri\":\"$REDIRECT_URI\", \"code\":\"$AUTHORIZATION_CODE\"}"
+```
+
+Here is a quick demo which demonstrates how to get an access token at Universe in 1 minute:
+
+<a href="https://www.youtube.com/watch?v=BafbpoahNJU">
+  <img src="./images/thumbnail.png" alt="demo" style="max-width:100%;" height="441px" width="560px">
+</a>
+
+For more information about OAuth 2.0, please see our [guide](https://developers.universe.com/docs/authorizing-with-oauth).
+
+</p>
+</details>
 
 ## Queries
 
