@@ -36,7 +36,6 @@ curl https://www.universe.com/graphql/beta \
   }"
 }
 EOF
-
 # => {
 #   "data": {
 #     "event": {
